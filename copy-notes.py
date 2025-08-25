@@ -1,8 +1,15 @@
 from pathlib import Path
 from datetime import datetime
 
+root = Path("./")
 notes_path = Path("./BlogArticles/journals/")
 output_path = Path("./reymerk-blog/content/posts/")
+
+while not (root / ".git").exists():
+    root = root.parent
+
+notes_path = root / notes_path
+output_path = root / output_path
 
 for n_file in notes_path.glob("*.md"):
     if n_file.is_file():
