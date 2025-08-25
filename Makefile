@@ -1,4 +1,7 @@
 
+build:
+	python3 ./copy-notes.py 
+	hugo
 
 enter-container:
 	docker run -it --rm --user 1000:1000 --network=host \
