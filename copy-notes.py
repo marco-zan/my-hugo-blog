@@ -5,7 +5,7 @@ root = Path("./")
 notes_path = Path("./BlogArticles/journals/")
 output_path = Path("./reymerk-blog/content/posts/")
 
-while not (root / ".git").exists():
+while not (root / "BlogArticles/").exists():
     root = root.parent
 
 notes_path = root / notes_path
