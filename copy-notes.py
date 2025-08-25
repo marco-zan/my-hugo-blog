@@ -45,10 +45,14 @@ for n_file in notes_path.glob("*.md"):
 
             with open(out_file, "w") as out_f:
                 out_f.writelines([
-                    "+++",
-                    "date='{}'".format(date_str),
-                    "draft=false",
-                    "title='{}'".format(title),
-                    "+++",
+                    "+++\n",
+                    "date='{}'\n".format(date_str),
+                    "draft=false\n",
+                    "title='{}'\n".format(title),
+                    "+++\n\n",
                 ])
-                out_f.writelines(content[first_line + 1:])
+                out_f.writelines([
+                    line if not line.startswith("- ") else line[2:]
+                    for line in content[first_line + 1:]
+                ])
+                _ = out_f.write("\n")
