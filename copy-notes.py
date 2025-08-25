@@ -11,8 +11,13 @@ while not (root / ".git").exists():
 notes_path = root / notes_path
 output_path = root / output_path
 
+print("Notes path:", notes_path)
+print("Output path:", output_path)
+
 for n_file in notes_path.glob("*.md"):
     if n_file.is_file():
+        print("Processing file:", n_file.name)
+
         with open(n_file, "r") as file:
             content = file.readlines()
 
@@ -27,9 +32,12 @@ for n_file in notes_path.glob("*.md"):
                 continue 
 
             title = content[first_line][2:].strip()
-            date = datetime.strptime(
+            date_str = datetime.strptime(
                 n_file.name, '%Y_%M_%d.md'
-            )
+            ).strftime('%Y-%m-%dT%H:%M:%S')
+
+            print("Found title:", title)
+            print("Found date:", date_str)
 
             out_file = (output_path / n_file.name)
             if out_file.exists():
@@ -38,7 +46,7 @@ for n_file in notes_path.glob("*.md"):
             with open(out_file, "w") as out_f:
                 out_f.writelines([
                     "+++",
-                    "date='{}'".format(date.strftime('%Y-%m-%dT%H:%M:%S')),
+                    "date='{}'".format(date_str),
                     "draft=false",
                     "title='{}'".format(title),
                     "+++",
