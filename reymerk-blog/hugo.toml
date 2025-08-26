@@ -13,7 +13,7 @@ theme = 'paper'
   rss = true                                # show rss icon
 
   # home page profile
-  avatar = 'https://gravatar.com/marcozanon0c3b810033'                 # gravatar email or image url
+  avatar = 'marco.zanon@pm.me'                 # gravatar email or image url
   name = 'ReyMerk'
   bio = 'I am a deeply passionate hacker, I enjoy playing with computers, embedded devices and mess with computer security'
 
