@@ -13,7 +13,7 @@ theme = 'paper'
   rss = true                                # show rss icon
 
   # home page profile
-  avatar = 'marco.zanon@pm.me'                 # gravatar email or image url
+  avatar = "avatar.jpg"            # use local avatar image in "static" folder
   name = 'ReyMerk'
   bio = 'I am a deeply passionate hacker, I enjoy playing with computers, embedded devices and mess with computer security'
 
