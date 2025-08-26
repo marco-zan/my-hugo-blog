@@ -16,6 +16,14 @@ output_path = root / output_path
 print("Notes path:", notes_path)
 print("Output path:", output_path)
 
+def cleanline(line: str) -> str:
+    if line.startswith("- "):
+        return line[2:]
+    elif line.startswith("\t- "):
+        return line[1:]
+
+    return line
+
 for n_file in notes_path.glob("*.md"):
     if n_file.is_file():
         print("Processing file:", n_file.name)
@@ -54,7 +62,7 @@ for n_file in notes_path.glob("*.md"):
                     "+++\n",
                 ])
                 out_f.writelines([
-                    line if not line.startswith("- ") else line[2:]
+                    cleanline(line)
                     for line in content[first_line + 1:]
                 ])
                 _ = out_f.write("\n")
