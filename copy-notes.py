@@ -22,6 +22,11 @@ def cleanline(line: str) -> str:
     elif line.startswith("\t- "):
         return line[1:]
 
+    if line.endswith("-") or line.endswith("-\n"):
+        return ""
+    elif not line.endswith("."):
+        return line + "."
+
     return line
 
 for n_file in notes_path.glob("*.md"):

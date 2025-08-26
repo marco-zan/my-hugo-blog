@@ -11,3 +11,13 @@ enter-container:
 		bash
 
 
+publish:
+	@echo "Going to publish:"
+	@git diff-index --name-only @ -- "BlogArticles/journals/*.md"
+	@echo "Press [Enter] to continue or Ctrl-C to abort"
+	@read
+	git add BlogArticles/journals/*.md
+	git commit -m "Updated articles"
+	@echo "Press [Enter] to continue or Ctrl-C to abort"
+	@read
+	git push
