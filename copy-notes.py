@@ -17,16 +17,22 @@ print("Notes path:", notes_path)
 print("Output path:", output_path)
 
 def cleanline(line: str) -> str:
-    if line.startswith("- "):
-        return line[2:]
-    elif line.startswith("\t- "):
-        return line[1:]
+    line = line.rstrip()
 
-    if line.endswith("-") or line.endswith("-\n"):
+    if line.endswith("-"):
         return ""
-    elif not line.endswith("."):
-        return line + "."
 
+    if line.startswith("- "):
+        line = line[2:]
+    elif line.startswith("\t- "):
+        line = line[1:]
+
+    if not line.endswith("."):
+        if not line.startswith("#") and not line.startswith("```"):
+            line = line + "."
+
+    if line.startswith("#"):
+        line = "\n" + line
     return line
 
 for n_file in notes_path.glob("*.md"):
@@ -67,7 +73,7 @@ for n_file in notes_path.glob("*.md"):
                     "+++\n",
                 ])
                 out_f.writelines([
-                    cleanline(line)
+                    cleanline(line) + "\n"
                     for line in content[first_line + 1:]
                 ])
                 _ = out_f.write("\n")
