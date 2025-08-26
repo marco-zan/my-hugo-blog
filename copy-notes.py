@@ -16,6 +16,12 @@ output_path = root / output_path
 print("Notes path:", notes_path)
 print("Output path:", output_path)
 
+def endswith_any(str: str, suffixes: list[str]) -> bool:
+    for suffix in suffixes:
+        if str.endswith(suffix):
+            return True
+    return False
+
 def cleanline(line: str) -> str:
     line = line.rstrip()
 
@@ -28,7 +34,10 @@ def cleanline(line: str) -> str:
         line = line[1:]
 
     if not line.endswith("."):
-        if not line.startswith("#") and not line.startswith("```"):
+        if not line.startswith("#") and \
+            not line.startswith("```") and \
+            not endswith_any(line, ["!", "?", ";", ",", ":"]):
+
             line = line + "."
 
     if line.startswith("#"):
