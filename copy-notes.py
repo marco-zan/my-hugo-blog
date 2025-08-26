@@ -1,5 +1,7 @@
+#!/usr/bin/env python3
 from pathlib import Path
 from datetime import datetime
+import re
 
 root = Path("./")
 notes_path = Path("./BlogArticles/journals/")
@@ -49,7 +51,7 @@ for n_file in notes_path.glob("*.md"):
                     "date='{}'\n".format(date_str),
                     "draft=false\n",
                     "title='{}'\n".format(title),
-                    "+++\n\n",
+                    "+++\n",
                 ])
                 out_f.writelines([
                     line if not line.startswith("- ") else line[2:]
